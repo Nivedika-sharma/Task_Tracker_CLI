@@ -10,7 +10,7 @@ def  add_task():
 
    task_description=input("Enter task description:")
    
-   task_status=input("Enter Status of tasks:")
+   task_status=input("Enter Status of tasks (Completed/Pending):")
    while not task_status:
       print("Status of the task is required")
       task_status=input("Enter Status of tasks:")
@@ -79,11 +79,20 @@ def update_task():
 #Delete Task
 def del_task():
    tasks =load_tasks()
+   task_len=len(tasks)
    task_id=int(input ("Enter Task ID to Delete the task:"))
    tasks=[task for task in tasks if task["id"]!=task_id]
-   save_tasks(tasks)
-   print("Task deleted Succesfully\n" \
-   "" \
-   "" \
-   "")
+   if len(tasks)<task_len:
+      save_tasks(tasks)
+      print("Task deleted Succesfully\n" \
+      "" \
+      "" \
+      "")
+   else:
+      print("No Task Found\n" \
+      "" \
+      "" \
+      "" \
+      "")
+
     
