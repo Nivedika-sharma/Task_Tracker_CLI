@@ -4,9 +4,22 @@ def  add_task():
    tasks =load_tasks()
    task_id=len(tasks)+1
    task_title=input("Enter task title:")
+   while not task_title:
+      print("Title of the task is required")
+      task_title=input("Enter task title:")
+
    task_description=input("Enter task description:")
+   
    task_status=input("Enter Status of tasks:")
+   while not task_status:
+      print("Status of the task is required")
+      task_status=input("Enter Status of tasks:")
+
    task_due_date=input("Enter Due Date (YYYY-MM-DD):")
+   while not task_due_date:
+      print("Due Date of the task is required")
+      task_due_date=input("Enter Due Date (YYYY-MM-DD):")
+
    tasks.append(
       {
       "id":task_id,
