@@ -18,7 +18,7 @@
 1. Make sure you have python installed on your system.
 2. Clone or download the project file.
 3. Run the Main File by writing command on cli : 
-      * Python main.py*
+   *Python main.py*
 
 
 
