@@ -1,4 +1,5 @@
 from complete.storage import load_tasks,save_tasks
+from datetime import datetime
 #add task 
 def  add_task():
    tasks =load_tasks()
@@ -15,10 +16,15 @@ def  add_task():
       print("Status of the task is required")
       task_status=input("Enter Status of tasks:")
 
-   task_due_date=input("Enter Due Date (YYYY-MM-DD):")
-   while not task_due_date:
-      print("Due Date of the task is required")
-      task_due_date=input("Enter Due Date (YYYY-MM-DD):")
+   while True:
+    task_due_date=input("Enter Due Date (YYYY-MM-DD):")
+    try:
+       datetime.strptime(task_due_date,"%Y-%m-%d")
+       break
+    except:
+       print("Invalid date format , Enter again")
+   
+    
 
    tasks.append(
       {
@@ -65,15 +71,24 @@ def list_tasks():
 def update_task():
     tasks =load_tasks()
     task_id=int(input ("Enter Task ID to update the task:"))
+    f=False
     for task in tasks:
       if task["id"]==task_id:
           task["status"]="Completed"
+          f=True
           break
-    save_tasks(tasks)
-    print("Task Marked Complete Succesfully\n" \
-    "" \
-    "" \
-    "")
+    if(f):     
+      save_tasks(tasks)
+      print("Task Marked Complete Succesfully\n" \
+      "" \
+      "" \
+      "")
+    else:
+      print("No Task Found\n" \
+      "" \
+      "" \
+      "" \
+      "")
 
 
 #Delete Task
