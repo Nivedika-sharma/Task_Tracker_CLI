@@ -1,6 +1,6 @@
 import json
 
-#file to store tasks
+
 
 Task_file='file/tasks.json'
 
@@ -14,7 +14,7 @@ def load_tasks():
     
 
 
-#file to save tasks
+
 
 def save_tasks(tasks):
     "Save Tasks to the JSON file."
