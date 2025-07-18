@@ -38,7 +38,7 @@ def  add_task():
 
 
 def get_date(tasks):
-   return tasks['due_date']
+   return  datetime.strptime(tasks['due_date'],"%Y-%m-%d")
 
  
 def list_tasks():
@@ -78,13 +78,17 @@ def update_task():
 def del_task():
    tasks =load_tasks()
    task_id=int(input ("Enter Task ID to Delete the task:"))
+   f=False
    for task in tasks:
       if task["id"]==task_id:
          tasks.remove(task)
-         save_tasks(tasks)
-         print(f"Task '{task}' deleted Succesfully\n\n\n")
-      else:
-         print(f"No Task Found\n\n\n" )
+         f=True
+         break
+   if(f):
+      save_tasks(tasks)
+      print(f"Task '{task}' deleted Succesfully\n\n\n")
+   else:
+      print(f"No Task Found\n\n\n" )
         
 
     
