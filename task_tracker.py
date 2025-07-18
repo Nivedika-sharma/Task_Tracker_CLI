@@ -1,6 +1,6 @@
 from complete.storage import load_tasks,save_tasks
 from datetime import datetime
-#add task 
+
 def  add_task():
    tasks =load_tasks()
    task_id=len(tasks)+1
@@ -23,9 +23,6 @@ def  add_task():
        break
     except:
        print("Invalid date format , Enter again")
-   
-    
-
    tasks.append(
       {
       "id":task_id,
@@ -37,17 +34,13 @@ def  add_task():
       }
     )
    save_tasks(tasks)
-   print("Task added succesfully\n" \
-   "" \
-   "" \
-   "" \
-   "")
+   print(f"Task '{task_title}' added succesfully\n\n\n") 
 
-#To fetch due date
+
 def get_date(tasks):
    return tasks['due_date']
 
-#List All Task  
+ 
 def list_tasks():
    tasks=load_tasks()
    tasks.sort(key=get_date,reverse=True)
@@ -61,13 +54,10 @@ def list_tasks():
             task['id'],task['title'],task['description'],task['due_date'],task['status']))
          print("+--+------------------------------------------------+----------------------------------------------------+----------------+----------------+")
    else:
-      print("No Task Found\n" \
-      "" \
-      "" \
-      "" \
-      "")
+      print("No Task Found\n\n\n") 
 
-#Update task
+
+
 def update_task():
     tasks =load_tasks()
     task_id=int(input ("Enter Task ID to update the task:"))
@@ -79,35 +69,22 @@ def update_task():
           break
     if(f):     
       save_tasks(tasks)
-      print("Task Marked Complete Succesfully\n" \
-      "" \
-      "" \
-      "")
+      print("Task Marked Complete Succesfully\n\n\n")
     else:
-      print("No Task Found\n" \
-      "" \
-      "" \
-      "" \
-      "")
+      print("No Task Found\n\n\n") 
 
 
-#Delete Task
+
 def del_task():
    tasks =load_tasks()
-   task_len=len(tasks)
    task_id=int(input ("Enter Task ID to Delete the task:"))
-   tasks=[task for task in tasks if task["id"]!=task_id]
-   if len(tasks)<task_len:
-      save_tasks(tasks)
-      print("Task deleted Succesfully\n" \
-      "" \
-      "" \
-      "")
-   else:
-      print("No Task Found\n" \
-      "" \
-      "" \
-      "" \
-      "")
+   for task in tasks:
+      if task["id"]==task_id:
+         tasks.remove(task)
+         save_tasks(tasks)
+         print(f"Task '{task}' deleted Succesfully\n\n\n")
+      else:
+         print(f"No Task Found\n\n\n" )
+        
 
     
